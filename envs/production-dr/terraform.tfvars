@@ -120,3 +120,19 @@ private_nsg_name = "NSG-PRIVATE-DR"
 data_nsg_name = "NSG-DATA-DR"
 
 acr_nsg_name = "NSG-ACR-DR"
+
+storage_account_name = "stprodxxxxdr"
+
+action_group_name       = "ag-prod-dr"
+action_group_short_name = "AGDR"
+
+action_group_email_receivers = [
+  {
+    name          = "Admin"
+    email_address = "admin@example.com"
+  }
+]
+
+allowed_locations_policy_definition_id = "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c"
+
+network_watcher_name = "NetworkWatcher-westus"

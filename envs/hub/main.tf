@@ -53,7 +53,7 @@ module "shared_subnet" {
 }
 
 module "firewall_pip" {
-  source = "../../modules/public-ip-address"
+  source = "../../modules/public-ip"
 
   name                = var.firewall_public_ip_name
   location            = var.location
@@ -62,7 +62,7 @@ module "firewall_pip" {
 }
 
 module "bastion_pip" {
-  source = "../../modules/public-ip-address"
+  source = "../../modules/public-ip"
 
   name                = var.bastion_public_ip_name
   location            = var.location
@@ -71,7 +71,7 @@ module "bastion_pip" {
 }
 
 module "vpn_gateway_pip" {
-  source = "../../modules/public-ip-address"
+  source = "../../modules/public-ip"
 
   name                = var.vpn_gateway_public_ip_name
   location            = var.location

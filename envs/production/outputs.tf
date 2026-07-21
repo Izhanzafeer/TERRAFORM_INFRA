@@ -150,3 +150,23 @@ output "appgw_diagnostic_id" {
 output "postgres_diagnostic_id" {
   value = module.postgres_diagnostics.id
 }
+
+output "aks_nsg_id" {
+  value = module.aks_nsg.id
+}
+
+output "appgw_nsg_id" {
+  value = module.appgw_nsg.id
+}
+
+output "private_nsg_id" {
+  value = module.private_nsg.id
+}
+
+output "data_nsg_id" {
+  value = module.data_nsg.id
+}
+
+output "acr_nsg_id" {
+  value = module.acr_nsg.id
+}

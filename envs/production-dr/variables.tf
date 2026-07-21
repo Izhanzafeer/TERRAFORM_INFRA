@@ -252,3 +252,30 @@ variable "data_nsg_name" {
 variable "acr_nsg_name" {
   type = string
 }
+variable "storage_account_name" {
+  description = "Storage Account name for Production DR"
+  type        = string
+}
+
+variable "action_group_name" {
+  type = string
+}
+
+variable "action_group_short_name" {
+  type = string
+}
+
+variable "action_group_email_receivers" {
+  type = list(object({
+    name          = string
+    email_address = string
+  }))
+}
+variable "allowed_locations_policy_definition_id" {
+  description = "Azure Policy Definition ID for Allowed Locations"
+  type        = string
+}
+
+variable "network_watcher_name" {
+  type = string
+}

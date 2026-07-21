@@ -438,3 +438,64 @@ module "private_nsg_association" {
   subnet_id                 = module.private_subnet.id
   network_security_group_id = module.private_nsg.id
 }
+
+module "storage_account" {
+  source = "../../modules/storage-account"
+
+  name                = var.storage_account_name
+  resource_group_name = module.resource_group.name
+  location            = var.location
+
+  tags = var.tags
+}
+module "action_group" {
+  source = "../../modules/action-group"
+
+  name                = var.action_group_name
+  resource_group_name = module.resource_group.name
+  short_name          = var.action_group_short_name
+
+  email_receivers = var.action_group_email_receivers
+
+  tags = var.tags
+}
+
+module "storage_account_alert" {
+  source = "../../modules/monitor-alert"
+
+  name                = "storage-availability-alert"
+  resource_group_name = module.resource_group.name
+
+  target_resource_id = module.storage_account.id
+  action_group_id    = module.action_group.id
+
+  description      = "Storage Account Availability Alert"
+  metric_namespace = "Microsoft.Storage/storageAccounts"
+  metric_name      = "Availability"
+
+  aggregation = "Average"
+  operator    = "LessThan"
+  threshold   = 99
+
+  tags = var.tags
+}
+module "allowed_locations_policy" {
+  source = "../../modules/policy-assignment"
+
+  name                 = "allowed-locations"
+  display_name         = "Allowed Azure Locations"
+  subscription_id      = var.subscription_id
+  policy_definition_id = var.allowed_locations_policy_definition_id
+  location             = var.location
+
+  description = "Restrict deployments to approved Azure regions."
+}
+module "network_watcher" {
+  source = "../../modules/network-watcher"
+
+  name                = var.network_watcher_name
+  resource_group_name = module.resource_group.name
+  location            = var.location
+
+  tags = var.tags
+}

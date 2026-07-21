@@ -1,12 +1,16 @@
 # Terraform
-**/.terraform/*
+.terraform/
 *.tfstate
 *.tfstate.*
 *.tfplan
 crash.log
 
-# Variable files
+# Terraform variables containing secrets
 *.auto.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
 
 # IDE
 .vscode/
